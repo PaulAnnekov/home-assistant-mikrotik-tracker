@@ -130,6 +130,7 @@ class MikrotikDeviceScanner(DeviceScanner):
     def _update_info(self):
         """Retrieve latest information from the Mikrotik box."""
         _LOGGER.info('Polling')
+        # TODO: Fix exception if router rebooted after initial connection.
         self.last_results = self.client.get_resource('/tool').call('ip-scan', arguments=self.ip_scan_args)
         _LOGGER.info('results %s', str(self.last_results))
         return True
